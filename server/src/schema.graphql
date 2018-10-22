@@ -1,0 +1,39 @@
+type Query {
+  movies: [Movie!]!
+  movie(id: ID!): Movie!
+  person(id: ID!): Person!
+}
+
+type Movie {
+  id: ID!
+  title: String!
+  poster_path: String
+  adult: Boolean
+  overview: String
+  release_date: String
+  genre_ids: [Int]
+  original_title: String
+  original_language: String
+  backdrop_path: String 
+  popularity: Float
+  vote_count: Int
+  video: Boolean
+  vote_average: Float
+}
+
+type Person {
+  id: ID!
+  name: String
+  birthday: String 
+  known_for_department: String
+  deathday: String
+  also_known_as: [String]
+  gender: Int
+  biography: String
+  popularity: Float
+  place_of_birth: String
+  profile_path: String 
+  adult: Boolean
+  imdb_id: String
+  homepage: String
+}
