@@ -1,0 +1,65 @@
+extend type Query {
+  person(id: ID!): Person!
+}
+
+type Person {
+  id: ID!
+  name: String
+  birthday: String 
+  known_for_department: String
+  deathday: String
+  also_known_as: [String]
+  gender: Int
+  biography: String
+  popularity: Float
+  place_of_birth: String
+  profile_path: String 
+  adult: Boolean
+  imdb_id: String
+  homepage: String
+  movie_credits: Person_Movie_Credits
+}
+
+type Person_Movie_Credits {
+  cast: [Person_Cast_Credit]
+  crew: [Person_Crew_Credit]
+}
+
+type Person_Cast_Credit {
+  character: String
+  credit_id: String
+  id: Int
+  release_date: String
+  vote_count: Int
+  video: Boolean
+  adult: Boolean
+  vote_average: Float
+  title: String
+  genre_ids: [Int]
+  original_language: String
+  original_title: String
+  popularity: Float
+  backdrop_path: String
+  overview: String
+  poster_path: String 
+}
+
+type Person_Crew_Credit {
+  id: Int
+  department: String
+  original_language: String
+  original_title: String
+  job: String
+  overview: String
+  vote_count: Int
+  video: Boolean
+  poster_path: String
+  backdrop_path: String
+  title: String
+  popularity: Float
+  genre_ids: [Int]
+  vote_average: Float
+  adult: Boolean
+  release_date: String
+  credit_id: String
+}
