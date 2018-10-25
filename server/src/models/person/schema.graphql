@@ -18,6 +18,7 @@ type Person {
   imdb_id: String
   homepage: String
   movie_credits: Person_Movie_Credits
+  images: [Profile_Image]
 }
 
 type Person_Movie_Credits {
@@ -62,4 +63,13 @@ type Person_Crew_Credit {
   adult: Boolean
   release_date: String
   credit_id: String
+}
+
+type Profile_Image {
+  aspect_ratio: Float
+  file_path: String
+  height: Int
+  vote_average: Float
+  vote_count: Int
+  width: Int
 }

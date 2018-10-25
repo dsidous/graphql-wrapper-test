@@ -4,11 +4,18 @@ const resolvers = {
       const { id } = args;
       return api.movie(id);
     },
-    movies: (parent, args, { api }) => api.movies(),
+    movies: (parent, args, { api }) => {
+      const { query } = args;
+      return api.movies(query);
+    },
     person: (parent, args, { api }) => {
       const { id } = args;
       return api.person(id);
     },
+    tv: (parent, args, { api }) => {
+      const { id } = args;
+      return api.tv(id);
+    }
   },
   Movie: {
     genre_names: (parent, args, { api }) => api.getGenreNames(parent.genre_ids)

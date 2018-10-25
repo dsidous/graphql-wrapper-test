@@ -28,7 +28,9 @@ type Movie_detailed {
   video: Boolean
   vote_average: Float
   vote_count: Int
-  credits: Movie_Credits
+  credits: Credits
+  videos: [Video]
+  reviews: [Review]
   similar: Similar
 }
 
@@ -59,12 +61,12 @@ type Similar {
   results: [Movie]
 }
 
-type Movie_Credits {
-  crew: [Movie_Crew_Credit],
-  cast: [Movie_Cast_Credit]
+type Credits {
+  crew: [Crew_Credit],
+  cast: [Cast_Credit]
 }
 
-type Movie_Cast_Credit {
+type Cast_Credit {
   cast_id: Int
   character: String
   credit_id: String
@@ -75,7 +77,7 @@ type Movie_Cast_Credit {
   profile_path: String
 }
 
-type Movie_Crew_Credit {
+type Crew_Credit {
   credit_id: String
   department: String
   gender: Int
@@ -83,4 +85,22 @@ type Movie_Crew_Credit {
   job: String
   name: String
   profile_path: String
+}
+
+type Video {
+  id: String
+  iso_639_1: String
+  iso_3166_1: String
+  key: String
+  name: String
+  site: String
+  size: Int
+  type: String
+}
+
+type Review {
+  id: String
+  author: String
+  content: String
+  url: String
 }

@@ -1,6 +1,6 @@
 const { GraphQLServer } = require('graphql-yoga');
 const fs = require('fs');
-const { gql } = require('apollo-server-express');
+const gql = require('graphql-tag');
 const glob = require('glob');
 const path = require('path');
 
@@ -23,7 +23,7 @@ const typeDefs = [
 ];
 
 const context = { api: Api };
-const options = { port: 4000 };
+const options = { port: 4040 };
 const server = new GraphQLServer({
   typeDefs,
   resolvers,
