@@ -18,15 +18,16 @@ type Person {
   imdb_id: String
   homepage: String
   movie_credits: Person_Movie_Credits
+  tv_credits: Person_Tv_Credits
   images: [Profile_Image]
 }
 
 type Person_Movie_Credits {
-  cast: [Person_Cast_Credit]
-  crew: [Person_Crew_Credit]
+  cast: [Person_Movie_Cast_Credit]
+  crew: [Person_Movie_Crew_Credit]
 }
 
-type Person_Cast_Credit {
+type Person_Movie_Cast_Credit {
   character: String
   credit_id: String
   id: Int
@@ -45,7 +46,7 @@ type Person_Cast_Credit {
   poster_path: String 
 }
 
-type Person_Crew_Credit {
+type Person_Movie_Crew_Credit {
   id: Int
   department: String
   original_language: String
@@ -62,6 +63,50 @@ type Person_Crew_Credit {
   vote_average: Float
   adult: Boolean
   release_date: String
+  credit_id: String
+}
+
+type Person_Tv_Credits {
+  cast: [Person_Tv_Cast_Credit]
+  crew: [Person_Tv_Crew_Credit]
+}
+
+type Person_Tv_Cast_Credit {
+  credit_id: String
+  original_name: String
+  id: Int
+  genre_ids: [Int]
+  character: String
+  name: String
+  poster_path: String
+  vote_count: Int
+  vote_average: Float
+  popularity: Float
+  episode_count: Int
+  original_language: String
+  first_air_date: String
+  backdrop_path: String
+  overview: String
+  origin_country: [String]
+}
+
+type Person_Tv_Crew_Credit {
+  id: Int
+  department: String
+  original_language: String
+  episode_count: Int
+  job: String
+  overview: String
+  origin_country: [String]
+  original_name: String
+  genre_ids: [Int]
+  name: String
+  first_air_date: String
+  backdrop_path: String
+  popularity: Float
+  vote_count: Int
+  vote_average: Float
+  poster_path: String
   credit_id: String
 }
 

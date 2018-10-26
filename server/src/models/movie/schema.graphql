@@ -73,7 +73,7 @@ type Cast_Credit {
   gender: Int
   id: Int
   name: String
-  order: Int
+  order: Int 
   profile_path: String
 }
 

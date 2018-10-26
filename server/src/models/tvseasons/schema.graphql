@@ -1,0 +1,46 @@
+extend type Query {
+  tvSeason(id:Int!, season: Int!): Tv_Season
+}
+
+type Tv_Season {
+  _id: String
+  air_date: String
+  episodes: [Tv_Episode]
+  name: String
+  overview: String
+  id: Int
+  poster_path: String
+  season_number: Int
+}
+
+type Tv_Episode {
+  air_date: String
+  crew: [Crew]
+  episode_number: Int
+  guest_stars: [Cast]
+  name: String
+  overview: String
+  id: Int
+  production_code: String
+  season_number: Int
+  still_path: String
+  vote_average: Float
+  vote_count: Int
+}
+
+type Crew {
+  id: Int
+  credit_id: String
+  name: String
+  department: String
+  job: String
+  profile_path: String
+}
+
+type Cast {
+  name: String
+  credit_id: String
+  character: String
+  order: Int
+  profile_path: String
+}

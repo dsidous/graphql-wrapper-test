@@ -23,7 +23,7 @@ class Api {
   }
 
   async person(id) {
-    const res = await axios(`${this.baseURL}person/${id}?&api_key=${APIKEY}&append_to_response=movie_credits,images`);
+    const res = await axios(`${this.baseURL}person/${id}?&api_key=${APIKEY}&append_to_response=movie_credits,tv_credits,images`);
     const images = res.data.images.profiles;
     res.data.images = images;
     return res.data
@@ -37,6 +37,11 @@ class Api {
 
   async tv(id) {
     const res = await axios(`${this.baseURL}tv/${id}?&api_key=${APIKEY}&append_to_response=credits,images`);
+    return res.data
+  }
+
+  async tvSeason(id, season) {
+    const res = await axios(`${this.baseURL}tv/${id}/season/${season}?&api_key=${APIKEY}`);
     return res.data
   }
 

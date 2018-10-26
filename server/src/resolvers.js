@@ -15,6 +15,10 @@ const resolvers = {
     tv: (parent, args, { api }) => {
       const { id } = args;
       return api.tv(id);
+    },
+    tvSeason: (parent, args, { api }) => {
+      const { id, season } = args;
+      return api.tvSeason(id,season);
     }
   },
   Movie: {
