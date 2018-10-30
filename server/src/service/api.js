@@ -9,40 +9,39 @@ class Api {
   }
 
   async movies(query) {
-    const res = await axios(`${this.baseURL}discover/movie?&api_key=${APIKEY}&${query}`);
-    return res.data.results;    
+    const {data:{results}} = await axios(`${this.baseURL}discover/movie?&api_key=${APIKEY}&${query}`);
+    return results;    
   }
 
   async movie(id) {
-    const res = await axios(`${this.baseURL}movie/${id}?&api_key=${APIKEY}&append_to_response=credits,similar,videos,reviews`);
-    const videos = res.data.videos.results;
-    const reviews = res.data.reviews.results;
-    res.data.videos = videos;
-    res.data.reviews = reviews;
-    return res.data;
+    const {data} = await axios(`${this.baseURL}movie/${id}?&api_key=${APIKEY}&append_to_response=credits,similar,videos,reviews`);
+    const {
+        videos:{results:videos}, 
+        reviews:{results:reviews}
+    } = data;
+    return {...data, videos, reviews};
   }
 
   async person(id) {
-    const res = await axios(`${this.baseURL}person/${id}?&api_key=${APIKEY}&append_to_response=movie_credits,tv_credits,images`);
-    const images = res.data.images.profiles;
-    res.data.images = images;
-    return res.data
+    const {data} = await axios(`${this.baseURL}person/${id}?&api_key=${APIKEY}&append_to_response=movie_credits,tv_credits,images`);
+    const {images:{profiles:images}} = data;    
+    return {...data, images}
   }
 
   async getGenreNames(ids) {
-    const res = await axios(`${this.baseURL}genre/movie/list?&api_key=${APIKEY}`);
-    const ret = { genre_name: [].concat(...ids.map(genreId => res.data.genres.filter(genre => genre.id === genreId).map(g =>  g.name)))};
+    const {data} = await axios(`${this.baseURL}genre/movie/list?&api_key=${APIKEY}`);
+    const ret = { genre_name: [].concat(...ids.map(genreId => data.genres.filter(genre => genre.id === genreId).map(g =>  g.name)))};
     return ret;
   }
 
   async tv(id) {
-    const res = await axios(`${this.baseURL}tv/${id}?&api_key=${APIKEY}&append_to_response=credits,images`);
-    return res.data
+    const {data} = await axios(`${this.baseURL}tv/${id}?&api_key=${APIKEY}&append_to_response=credits,images`);
+    return data
   }
 
   async tvSeason(id, season) {
-    const res = await axios(`${this.baseURL}tv/${id}/season/${season}?&api_key=${APIKEY}`);
-    return res.data
+    const {data} = await axios(`${this.baseURL}tv/${id}/season/${season}?&api_key=${APIKEY}`);
+    return data;
   }
 
 }

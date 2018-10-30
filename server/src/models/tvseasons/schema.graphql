@@ -4,9 +4,9 @@ extend type Query {
 
 type Tv_Season {
   _id: String
+  name: String
   air_date: String
   episodes: [Tv_Episode]
-  name: String
   overview: String
   id: Int
   poster_path: String
@@ -14,15 +14,15 @@ type Tv_Season {
 }
 
 type Tv_Episode {
-  air_date: String
-  crew: [Crew]
-  episode_number: Int
-  guest_stars: [Cast]
-  name: String
-  overview: String
   id: Int
-  production_code: String
+  name: String
+  episode_number: Int
   season_number: Int
+  air_date: String
+  overview: String
+  guest_stars: [Cast]
+  crew: [Crew]
+  production_code: String
   still_path: String
   vote_average: Float
   vote_count: Int
@@ -41,6 +41,6 @@ type Cast {
   name: String
   credit_id: String
   character: String
-  order: Int
   profile_path: String
+  order: Int
 }
