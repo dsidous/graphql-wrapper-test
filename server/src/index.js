@@ -1,10 +1,12 @@
-const { GraphQLServer } = require('graphql-yoga');
+const { ApolloServer } = require('apollo-server');
 const fs = require('fs');
 const gql = require('graphql-tag');
 const glob = require('glob');
 const path = require('path');
+require('dotenv').config();
+const APIKEY = process.env.API_KEY;
 
-const Api = require('./service/api');
+const MoviesService = require('./service/api');
 const resolvers = require('./resolvers');
 
 const basePath = path.join(__dirname, './models/');
@@ -22,12 +24,18 @@ const typeDefs = [
     .map(schema => gql(fs.readFileSync(schema, 'utf8'))),
 ];
 
-const context = { api: Api };
+const context = { apiKey: APIKEY };
 const options = { port: 4040 };
-const server = new GraphQLServer({
+const graphQLOptions = ({ 
+  context,
   typeDefs,
-  resolvers,
-  context
+  resolvers,    
+  dataSources: () => ({
+    moviesService: new MoviesService(),
+  }),
 });
-server.start(options, () =>
-  console.log(`Server is running on localhost: ${options.port}`));
+const server = new ApolloServer(graphQLOptions);
+
+server.listen(options).then(({ url }) => {
+  console.log(`🚀  Server ready at ${url}`);
+});

@@ -1,28 +1,28 @@
 const resolvers = {
   Query: {
-    movie: (parent, args, { api } ) => {
-      const { id } = args;
-      return api.movie(id);
+    movie: async (parent, args, { dataSources } ) => {
+      const { id } = args;      
+      return dataSources.moviesService.getMovie(id);
     },
-    movies: (parent, args, { api }) => {
+    movies: (parent, args, { dataSources }) => {
       const { query } = args;
-      return api.movies(query);
+      return dataSources.moviesService.getMovies(query);
     },
-    person: (parent, args, { api }) => {
+    person: (parent, args, { dataSources }) => {
       const { id } = args;
-      return api.person(id);
+      return dataSources.moviesService.getPerson(id);
     },
-    tv: (parent, args, { api }) => {
+    tv: (parent, args, { dataSources }) => {
       const { id } = args;
-      return api.tv(id);
+      return dataSources.moviesService.getTv(id);
     },
-    tvSeason: (parent, args, { api }) => {
+    tvSeason: (parent, args, { dataSources }) => {
       const { id, season } = args;
-      return api.tvSeason(id,season);
+      return dataSources.moviesService.getTvSeason(id,season);
     }
   },
   Movie: {
-    genre_names: (parent, args, { api }) => api.getGenreNames(parent.genre_ids)
+    genre_names: (parent, args, { dataSources }) => dataSources.moviesService.getGenreNames(parent.genre_ids)
   }
 };
 
